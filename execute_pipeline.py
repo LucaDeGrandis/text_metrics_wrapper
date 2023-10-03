@@ -1,5 +1,5 @@
 import argparse
-from text_metrics_wrapper.preprocessing.preprocess import preprocess_text_blocks
+from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess_text_blocks
 from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
 
