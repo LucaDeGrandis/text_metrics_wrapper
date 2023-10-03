@@ -1,4 +1,4 @@
-from .parent_utilities import *
+from text_metrics_wrapper.parent.parent_utilities import *
 from typing import List, Union, Tuple
 from tqdm import tqdm
 import numpy as np

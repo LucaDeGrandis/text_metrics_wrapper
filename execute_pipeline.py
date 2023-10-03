@@ -1,7 +1,7 @@
 import argparse
-from .preprocessing.preprocess import preprocess_text_blocks
-from ..utils import load_json_file
-from .parent.parent import Parent
+from text_metrics_wrapper.preprocessing.preprocess import preprocess_text_blocks
+from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
+from text_metrics_wrapper.metrics.parent.parent import Parent
 
 
 metric_to_function_map = {"Parent": Parent}
@@ -29,14 +29,14 @@ def main():
     args = parse_arguments()
     print(args)
 
-    references = load_json_file(args.references)
-    hypothesis = load_json_file(args.hypothesis)
+    references = load_jsonl_file(args.references)
+    hypothesis = load_jsonl_file(args.hypothesis)
 
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
     if args.tables is not None:
-        tables = load_json_file(args.tables)
+        tables = load_jsonl_file(args.tables)
 
     metric_function = metric_to_function_map[args.metric]
 

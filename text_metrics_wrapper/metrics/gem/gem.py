@@ -1,5 +1,5 @@
-from ...utils.load_jsonl_file import load_jsonl_file
-from ...utils.load_json_file import write_json_file
+from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
+from text_metrics_wrapper.utils.manage_json_files import write_json_file
 import shutil
 import os
 
