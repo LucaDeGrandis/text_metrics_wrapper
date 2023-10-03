@@ -12,9 +12,6 @@ source /etc/environment
 # Go to the correct folder
 cd $TEXT_METRICS_WRAPPER_DIR
 
-# Install Google language
-git clone https://github.com/google-research/language.git
-
 # Install GEM
 git clone https://github.com/GEM-benchmark/GEM-metrics
 cd GEM-metrics
