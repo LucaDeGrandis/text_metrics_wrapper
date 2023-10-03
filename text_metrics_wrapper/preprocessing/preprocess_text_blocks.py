@@ -1,5 +1,5 @@
 from typing import List, Union
-from ..tokenizers.tokenizer import tokenizer
+from text_metrics_wrapper.tokenizers.tokenizer import tokenizer
 
 
 def preprocess_text_blocks(text_blocs: Union[List[str], List[List[str]]], tokenizer_name: str, **kwargs: dict) -> None:

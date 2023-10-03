@@ -14,9 +14,9 @@ def Parent(
     Ps = []
     Rs = []
     for _des, _hyp, _tab in tqdm(zip(references, predictions, tables)):
-        parent_references = _text_reader_reference([tokenizer(x).replace("\n", " ") for x in _des])
-        parent_candidates = _text_reader_candidate([tokenizer(_hyp.replace("\n", " "))])
-        parent_tables = [_table_reader([webNLG_to_html_table(_tab)])]
+        parent_references = _text_reader_reference(_des)
+        parent_candidates = _text_reader_candidate(_hyp)
+        parent_tables = [_table_reader([_tab])]
         parent_references = list(parent_references)
         parent_candidates = list(parent_candidates)
         parent_tables = list(parent_tables)
