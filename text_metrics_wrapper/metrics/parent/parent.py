@@ -13,7 +13,7 @@ def Parent(
     Fs = []
     Ps = []
     Rs = []
-    for _des, _hyp, _tab in tqdm(zip(references, predictions, tables)):
+    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, tables)):
         parent_references = _text_reader_reference(_des)
         parent_candidates = _text_reader_candidate(_hyp)
         parent_tables = [_table_reader([_tab])]
