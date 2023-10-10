@@ -1,6 +1,6 @@
 import argparse
 from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess_text_blocks
-from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
+from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file, write_jsonl_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
 
 
@@ -41,6 +41,8 @@ def main():
     metric_function = metric_to_function_map[args.metric]
 
     results = metric_function(prep_hypothesis, references, tables)
+
+    write_jsonl_file(args.o, results, overwrite=True)
 
 
 if __name__ == "__main__":
