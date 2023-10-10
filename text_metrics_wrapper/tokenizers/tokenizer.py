@@ -1,9 +1,10 @@
 from typing import Optional, List
 from text_metrics_wrapper.tokenizers.identity_tokenizer import identity_tokenizer
+from text_metrics_wrapper.tokenizers.tokenizer_13a import tokenizer_13a
 from text_metrics_wrapper.blocks.text_block import text_block
 
 
-tokenizer_map = {"identity": identity_tokenizer}
+tokenizer_map = {"identity": identity_tokenizer, "tokenizer_13a": tokenizer_13a}
 
 
 class tokenizer:
