@@ -23,6 +23,6 @@ def preprocess_text_blocks(text_blocs: Union[List[str], List[List[str]]], tokeni
         else:
             text_list.append(text_block.text.replace("\n", " ").replace("  ", " "))
 
-    preprocessed_text.append(selected_tokenizer.execute(text, **kwargs))
+    preprocessed_text = selected_tokenizer.execute(text, **kwargs)
 
     return preprocessed_text
