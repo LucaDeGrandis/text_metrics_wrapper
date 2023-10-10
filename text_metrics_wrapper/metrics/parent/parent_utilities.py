@@ -18,6 +18,54 @@ from six.moves import zip
 import tensorflow.compat.v1 as tf
 
 
+from bs4 import BeautifulSoup
+
+
+def html_table_to_entries(html_table):
+    # Parse the HTML using BeautifulSoup
+    soup = BeautifulSoup(html_table, "html.parser")
+
+    # Find all the rows in the table
+    rows = soup.find_all("tr")
+
+    row_content = []
+
+    for row_idx, row in enumerate(rows):
+        cells = row.find_all(["th", "td"])
+        row_content.append([])
+
+        for col_idx, cell in enumerate(cells):
+            cell_text = cell.get_text(strip=True)
+            rowspan = int(cell.get("rowspan", 1))
+            colspan = int(cell.get("colspan", 1))
+
+            entry = {"text": cell_text, "rowspan": rowspan, "colspan": colspan}
+
+            row_content[-1].append(entry)
+
+    # adjust row/col index according to the colspan
+    entries = []
+    cols = list(set(list(range(max([len(row) for row in rows])))))
+    rows = list(set(list(range(len(rows)))))
+    rows.sort()
+    cols.sort()
+
+    occupied = []
+    for _r, row in enumerate(row_content):
+        for _c, _el in enumerate(row):
+            position = [_r, _c]
+            while position in occupied:
+                position[1] += 1
+            _el["row"] = position[0]
+            _el["col"] = position[1]
+            for _r2 in range(_r, _r + _el["rowspan"]):
+                for _c2 in range(_c, _c + _el["colspan"]):
+                    occupied.append([_r2, _c2])
+            entries.append(_el)
+
+    return entries
+
+
 def _text_reader_reference(raw_text):
     """Yields lines from the text file.
 
