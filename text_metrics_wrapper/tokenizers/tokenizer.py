@@ -40,6 +40,7 @@ class tokenizer:
             if isinstance(block, text_block):
                 tokenized_sentences.append(self.tokenizer(block.text))
             elif isinstance(block, str):
+                print(self.tokenizer)
                 tokenized_sentences.append(self.tokenizer(block))
 
         return tokenized_sentences
