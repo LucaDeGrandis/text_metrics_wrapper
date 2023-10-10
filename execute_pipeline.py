@@ -42,7 +42,7 @@ def main():
 
     results = metric_function(prep_hypothesis, references, tables)
 
-    write_jsonl_file(args.o, results, overwrite=True)
+    write_json_file(args.o, results, overwrite=True)
 
 
 if __name__ == "__main__":
