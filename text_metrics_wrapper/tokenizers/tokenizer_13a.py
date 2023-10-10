@@ -1,10 +1,9 @@
 from sacrebleu.tokenizers.tokenizer_13a import Tokenizer13a
+
 tokenizer = Tokenizer13a()
 
 
-def tokenizer_13a(
-    text: str
-) -> str:
+def tokenizer_13a(text: str) -> str:
     """Returns the input text as is.
 
     This function is a simple identity tokenizer that returns the input text
@@ -16,4 +15,4 @@ def tokenizer_13a(
     Returns:
         str: The input text as is.
     """
-    return Tokenizer13a(text)
+    return tokenizer(text)
