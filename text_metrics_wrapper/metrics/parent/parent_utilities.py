@@ -19,6 +19,33 @@ import tensorflow.compat.v1 as tf
 
 
 from bs4 import BeautifulSoup
+from copy import deepcopy
+
+
+def extend_empty_cells(table_list):
+    table_list_copy = deepcopy(table_list)
+    spanning_row = list(filter(lambda x: x["rowspan"] > 1, table_list_copy))
+    for entry in spanning_row:
+        span = range(entry["row"] + 1, entry["row"] + entry["rowspan"])
+        entry["rowspan"] = 1
+        for _r in span:
+            new_entry = deepcopy(entry)
+            new_entry["row"] = _r
+            table_list_copy.append(new_entry)
+    spanning_col = list(filter(lambda x: x["colspan"] > 1, table_list_copy))
+    for entry in spanning_col:
+        span = range(entry["col"] + 1, entry["col"] + entry["colspan"])
+        entry["colspan"] = 1
+        for _c in span:
+            new_entry = deepcopy(entry)
+            new_entry["col"] = _c
+            table_list_copy.append(new_entry)
+    table_list_copy = sorted(table_list_copy, key=lambda x: (x["row"], x["col"]))
+    table_row_dic = []
+    for _r in range(max([_el["row"] for _el in table_list_copy]) + 1):
+        row_entries = list(filter(lambda x: x["row"] == _r, table_list_copy))
+        table_row_dic.append(row_entries)
+    return table_row_dic
 
 
 def html_table_to_entries(html_table):
