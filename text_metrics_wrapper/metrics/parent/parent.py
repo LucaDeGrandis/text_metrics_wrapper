@@ -45,4 +45,4 @@ def Parent(
         Ps.append(temp_scores[score_index][0])
         Rs.append(temp_scores[score_index][1])
 
-    return np.mean(Ps), np.mean(Rs), np.mean(Fs)
+    return {"precision": np.mean(Ps), "recall": np.mean(Rs), "F1score": np.mean(Fs)}
