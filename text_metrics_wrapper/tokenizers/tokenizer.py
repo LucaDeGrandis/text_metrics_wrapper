@@ -22,6 +22,7 @@ class tokenizer:
         """
         Creates a tokenizer based on the specified tokenizer name.
         """
+        assert self.tokenizer_name in tokenizer_map
         self.tokenizer = tokenizer_map[self.tokenizer_name]
 
     def execute(self, text_blocks: List[text_block], **kwargs: dict) -> List[str]:
