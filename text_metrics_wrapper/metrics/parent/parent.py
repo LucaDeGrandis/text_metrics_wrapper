@@ -1,5 +1,5 @@
-from text_metrics_wrapper.parent.parent_utilities import *
-from typing import List, Union, Tuple
+from text_metrics_wrapper.metrics.parent.parent_utilities import *
+from typing import List, Union, Tuple, Dict, Any
 from tqdm import tqdm
 import numpy as np
 
@@ -7,7 +7,7 @@ import numpy as np
 def Parent(
     hypothesis: List[str], references: Union[List[str], List[List[str]]], tables: List[List[Dict[str, Any]]]
 ) -> Tuple[float, float, float]:
-    print(f"Computing Parent metric...")
+    print("Computing Parent metric...")
 
     # Compute the parent metric
     Fs = []
