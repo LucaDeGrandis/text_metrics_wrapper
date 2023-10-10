@@ -16,7 +16,7 @@ class tokenizer:
             tokenizer_name (Optional[str]): The name of the tokenizer to use. Defaults to 'identity' if None.
         """
         self.tokenizer_name = "identity" if tokenizer_name is None else tokenizer_name
-        self.tokenizer = self.create_tokenizer()
+        self.create_tokenizer()
 
     def create_tokenizer(self) -> None:
         """
