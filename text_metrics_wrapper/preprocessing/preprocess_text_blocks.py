@@ -16,13 +16,13 @@ def preprocess_text_blocks(text_blocs: Union[List[str], List[List[str]]], tokeni
     """
     selected_tokenizer = tokenizer(tokenizer_name)
 
-    preprocessed_text = []
+    text_list = []
     for text_block in text_blocs:
         if isinstance(text_block, str):
-            text = text_block.replace("\n", " ").replace("  ", " ")
+            text_list.append(text_block.replace("\n", " ").replace("  ", " "))
         else:
-            text = text_block.text.replace("\n", " ").replace("  ", " ")
+            text_list.append(text_block.text.replace("\n", " ").replace("  ", " "))
 
-        preprocessed_text.append(selected_tokenizer.execute(text, **kwargs))
+    preprocessed_text.append(selected_tokenizer.execute(text, **kwargs))
 
     return preprocessed_text
