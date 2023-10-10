@@ -3,6 +3,7 @@ from text_metrics_wrapper.metrics.parent.parent_utilities import (
     _text_reader_candidate,
     _table_reader,
     parent,
+    overlap_probability,
 )
 from typing import List, Union, Tuple, Dict, Any
 from tqdm import tqdm
