@@ -37,7 +37,6 @@ def Bleurt(
 
     scores = []
     for hyp, refs in tqdm(zip(hypothesis, references)):
-        print(hyp, refs)
         hyp_scores = []
         for ref in refs:
             hyp_scores.append(scorer.score(references=[ref], candidates=[hyp])[0])
