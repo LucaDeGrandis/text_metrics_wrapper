@@ -2,9 +2,13 @@ import argparse
 from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess_text_blocks
 from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file, write_jsonl_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
+from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
 
 
-metric_to_function_map = {"Parent": Parent}
+metric_to_function_map = {
+    "Parent": Parent,
+    "Bleurt": Bleurt,
+}
 
 
 def parse_arguments():
@@ -21,6 +25,14 @@ def parse_arguments():
     parser.add_argument("--tables", type=str, default=None, help="The path to the tables.")
     parser.add_argument("--metric", type=str, default="", help="The name of the metric to compute.")
     parser.add_argument("--o", type=str, default="", help="The path to the output file")
+    parser.add_argument("--checkpoint", type=str, default=None, help="The path to the model checkpoint")
+    parser.add_argument("--method", type=str, default=None, help="The modality of the metric")
+    parser.add_argument(
+        "--return_all_scores",
+        type=bool,
+        default=False,
+        help="Whether to return all scores or just the average, not available for all metrics.",
+    )
     args = parser.parse_args()
     return args
 
@@ -35,12 +47,18 @@ def main():
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
+    kwargs = {}
     if args.tables is not None:
-        tables = load_jsonl_file(args.tables)
+        kwargs["tables"] = load_jsonl_file(args.tables)
+    if args.checkpoint is not None:
+        kwargs["checkpoint"] = args.checkpoint
+    if args.method is not None:
+        kwargs["method"] = args.method
+    kwargs["return_all_scores"] = args.return_all_scores
 
     metric_function = metric_to_function_map[args.metric]
 
-    results = metric_function(prep_hypothesis, references, tables)
+    results = metric_function(prep_hypothesis, references, kwargs)
 
     write_json_file(args.o, results, overwrite=True)
 

@@ -10,16 +10,34 @@ from tqdm import tqdm
 import numpy as np
 
 
+from typing import List, Tuple, Union
+
+
 def Parent(
-    hypothesis: List[str], references: Union[List[str], List[List[str]]], tables: List[List[Dict[str, Any]]]
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
 ) -> Tuple[float, float, float]:
+    """Computes the Parent metric for a given set of hypothesis and references.
+
+    Args:
+        hypothesis: A list of strings representing the hypothesis.
+        references: A list of strings or a list of lists of strings representing the references.
+        **kwargs: Additional keyword arguments.
+
+    Kwargs:
+        tables: List[List[Dict[str, Any]]]: A list of dictionaries representing the tables.
+
+    Returns:
+        A tuple of floats representing the precision, recall, and F1 score of the Parent metric.
+    """
     print("Computing Parent metric...")
 
     # Compute the parent metric
     Fs = []
     Ps = []
     Rs = []
-    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, tables)):
+    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, kwargs["tables"])):
         parent_references = _text_reader_reference(_des)
         parent_candidates = _text_reader_candidate(_hyp)
         parent_tables = [_table_reader([_tab])]
