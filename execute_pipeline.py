@@ -44,7 +44,7 @@ def main():
     references = load_jsonl_file(args.references)
     hypothesis = load_jsonl_file(args.hypothesis)
 
-    prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
+    prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
     kwargs = {}
@@ -58,7 +58,7 @@ def main():
 
     metric_function = metric_to_function_map[args.metric]
 
-    results = metric_function(prep_hypothesis, references, kwargs)
+    results = metric_function(prep_hypothesis, prep_references, kwargs)
 
     write_json_file(args.o, results, overwrite=True)
 
