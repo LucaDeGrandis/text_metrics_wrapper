@@ -44,11 +44,11 @@ def main():
     references = load_jsonl_file(args.references)
     hypothesis = load_jsonl_file(args.hypothesis)
 
-    print(len(references))
-    print(len(hypothesis))
-
     prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
+
+    print(len(prep_references))
+    print(len(prep_hypothesis))
 
     kwargs = {}
     if args.tables is not None:
