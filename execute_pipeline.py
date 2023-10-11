@@ -58,7 +58,7 @@ def main():
 
     metric_function = metric_to_function_map[args.metric]
 
-    results = metric_function(prep_hypothesis, prep_references, kwargs)
+    results = metric_function(prep_hypothesis, prep_references, **kwargs)
 
     write_json_file(args.o, results, overwrite=True)
 
