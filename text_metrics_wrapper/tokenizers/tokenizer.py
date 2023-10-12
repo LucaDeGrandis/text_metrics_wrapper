@@ -37,18 +37,15 @@ class tokenizer:
         """
         tokenized_sentences = []
         if isinstance(text_blocks[0], list):
-            for text_block in text_blocks:
+            for blocks_list in text_blocks:
                 temp_list = []
-                for block in text_block:
+                for block in blocks_list:
                     if isinstance(block, text_block):
                         temp_list.append(self.tokenizer(block.text))
                     elif isinstance(block, str):
                         temp_list.append(self.tokenizer(block))
                     tokenized_sentences.append(temp_list)
-                if isinstance(block, text_block):
-                    tokenized_sentences.append(self.tokenizer(block.text))
-                elif isinstance(block, str):
-                    tokenized_sentences.append(self.tokenizer(block))
+                tokenized_sentences.append(temp_list)
         else:
             for block in text_blocks:
                 if isinstance(block, text_block):
