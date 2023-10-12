@@ -35,7 +35,9 @@ def preprocess_text_blocks(text_blocs: Union[List[str], List[List[str]]], tokeni
             temp_list = []
             for text_block in text_block_list:
                 if isinstance(text_block, str):
+                    print(text_block)
                     temp_list.append(custom_text_preprocessing(text_block))
+                    print(custom_text_preprocessing(text_block))
                 else:
                     temp_list.append(custom_text_preprocessing(text_block.text))
             text_list.append(temp_list)
