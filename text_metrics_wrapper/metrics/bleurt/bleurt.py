@@ -35,8 +35,6 @@ def Bleurt(
 
     assert kwargs["method"] in ["max", "avg"], "method must be either 'max' or 'avg'"
 
-    print(references[0])
-
     scores = []
     for hyp, refs in tqdm(zip(hypothesis, references)):
         hyp_scores = []
