@@ -47,8 +47,8 @@ def main():
     prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
-    print("len(prep_references):", len(prep_references))
-    print(prep_references)
+    print("len(prep_references):", len(references))
+    print(references)
 
     kwargs = {}
     if args.tables is not None:
