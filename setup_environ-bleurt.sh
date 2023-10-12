@@ -15,6 +15,7 @@ cd $TEXT_METRICS_WRAPPER_DIR
 # Install Google language
 git clone https://github.com/google-research/bleurt.git
 cd bleurt
+git checkout cebe7e6
 pip install .
 wget https://storage.googleapis.com/bleurt-oss-21/BLEURT-20.zip .
 unzip BLEURT-20.zip

@@ -14,3 +14,6 @@ cd $TEXT_METRICS_WRAPPER_DIR
 
 # Install Google language
 git clone https://github.com/google-research/language.git
+cd language
+git checkout ac94470
+cd ..

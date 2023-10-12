@@ -13,18 +13,18 @@ source /etc/environment
 cd $TEXT_METRICS_WRAPPER_DIR
 
 # Install GEM
-git clone https://github.com/GEM-benchmark/GEM-metrics
+git clone https://github.com/GEM-benchmark/GEM-metrics.git
 cd GEM-metrics
+git checkout 8162210
 pip install -r requirements.txt
 cd ..
 
+# Install heavy requirements for GEM
+pip install bert_score==0.3.13
+pip install pyemd==1.0.0
+
 # Get the MoverScore requirements
-cd "/content/drive/Shareddrives/LLM_test/Luca_De_Grandis_test/Table_summarization/emnlp19-moverscore"
+git clone https://github.com/LucaDeGrandis/moverscore_modified.git
+cd moverscore_modified
 pip install .
 cd ..
-
-%%shell
-cd "/content/drive/Shareddrives/LLM_test/Luca_De_Grandis_test/Table_summarization/GEM-metrics"
-pip install -r requirements-heavy.txt
-cd ..
-
