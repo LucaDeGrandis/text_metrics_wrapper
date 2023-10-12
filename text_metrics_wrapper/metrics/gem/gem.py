@@ -3,6 +3,7 @@ from tqdm import tqdm
 from bleurt import score
 from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
 import shutil
+import os
 
 
 def Gem(
