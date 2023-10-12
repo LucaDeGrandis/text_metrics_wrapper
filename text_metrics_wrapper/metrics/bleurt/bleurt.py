@@ -3,11 +3,6 @@ from tqdm import tqdm
 from bleurt import score
 
 
-from typing import List, Tuple, Union
-from bleurt import score
-from tqdm import tqdm
-
-
 def Bleurt(
     hypothesis: List[str],
     references: Union[List[str], List[List[str]]],

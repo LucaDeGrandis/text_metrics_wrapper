@@ -4,11 +4,13 @@ from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
 from text_metrics_wrapper.utils.manage_json_files import write_json_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
 from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
+from text_metrics_wrapper.metrics.gem.gem import Gem
 
 
 metric_to_function_map = {
     "Parent": Parent,
     "Bleurt": Bleurt,
+    "Gem": Gem,
 }
 
 
@@ -28,6 +30,7 @@ def parse_arguments():
     parser.add_argument("--o", type=str, default="", help="The path to the output file")
     parser.add_argument("--checkpoint", type=str, default=None, help="The path to the model checkpoint")
     parser.add_argument("--method", type=str, default=None, help="The modality of the metric")
+    parser.add_argument("--metrics_list", type=str, default=None, help="List of metrics to compute with GEM.")
     parser.add_argument(
         "--return_all_scores",
         type=bool,
@@ -55,6 +58,8 @@ def main():
         kwargs["checkpoint"] = args.checkpoint
     if args.method is not None:
         kwargs["method"] = args.method
+    if args.metrics_list is not None:
+        kwargs["metrics_list"] = args.metrics_list
     kwargs["return_all_scores"] = args.return_all_scores
 
     metric_function = metric_to_function_map[args.metric]
