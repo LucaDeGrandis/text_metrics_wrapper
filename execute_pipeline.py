@@ -1,6 +1,7 @@
 import argparse
 from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess_text_blocks
-from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file, write_jsonl_file
+from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
+from text_metrics_wrapper.utils.manage_json_files import write_json_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
 from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
 
