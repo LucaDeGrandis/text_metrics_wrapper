@@ -36,10 +36,24 @@ class tokenizer:
             List[str]: The list of tokenized sentences.
         """
         tokenized_sentences = []
-        for block in text_blocks:
-            if isinstance(block, text_block):
-                tokenized_sentences.append(self.tokenizer(block.text))
-            elif isinstance(block, str):
-                tokenized_sentences.append(self.tokenizer(block))
+        if isinstance(text_blocks[0], list):
+            for text_block in text_blocks:
+                temp_list = []
+                for block in text_block:
+                    if isinstance(block, text_block):
+                        temp_list.append(self.tokenizer(block.text))
+                    elif isinstance(block, str):
+                        temp_list.append(self.tokenizer(block))
+                    tokenized_sentences.append(temp_list)
+                if isinstance(block, text_block):
+                    tokenized_sentences.append(self.tokenizer(block.text))
+                elif isinstance(block, str):
+                    tokenized_sentences.append(self.tokenizer(block))
+        else:
+            for block in text_blocks:
+                if isinstance(block, text_block):
+                    tokenized_sentences.append(self.tokenizer(block.text))
+                elif isinstance(block, str):
+                    tokenized_sentences.append(self.tokenizer(block))
 
         return tokenized_sentences
