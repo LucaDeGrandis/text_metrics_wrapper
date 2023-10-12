@@ -47,9 +47,6 @@ def main():
     prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
-    print(len(prep_references))
-    print(len(prep_hypothesis))
-
     kwargs = {}
     if args.tables is not None:
         kwargs["tables"] = load_jsonl_file(args.tables)
