@@ -21,6 +21,7 @@ def Bleu_nltk(
     Returns:
         A dictionary containing the BLEU score.
     """
+    assert len(hypothesis) == len(references), f"{len(hypothesis)} != {len(references)}"
     weights = prepare_weights(kwargs["bleu_n"])
     result = corpus_bleu(references, hypothesis)
 
