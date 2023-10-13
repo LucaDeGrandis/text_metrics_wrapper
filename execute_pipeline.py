@@ -8,6 +8,7 @@ from text_metrics_wrapper.metrics.gem.gem import Gem
 from text_metrics_wrapper.metrics.sacrebleu.bleu import Bleu_sacrebleu
 from text_metrics_wrapper.metrics.sacrebleu.chrf import Chrf_sacrebleu
 from text_metrics_wrapper.metrics.sacrebleu.ter import Ter_sacrebleu
+from text_metrics_wrapper.metrics.nltk.bleu import Bleu_nltk
 
 
 metric_to_function_map = {
@@ -17,6 +18,7 @@ metric_to_function_map = {
     "Bleu_sacrebleu": Bleu_sacrebleu,
     "Chrf_sacrebleu": Chrf_sacrebleu,
     "Ter_sacrebleu": Ter_sacrebleu,
+    "Bleu_nltk": Bleu_nltk,
 }
 
 
