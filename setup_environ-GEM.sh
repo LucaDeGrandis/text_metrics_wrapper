@@ -12,6 +12,9 @@ source /etc/environment
 # Go to the correct folder
 cd $TEXT_METRICS_WRAPPER_DIR
 
+# Create a txt file
+touch example.txt
+
 # Install GEM
 git clone https://github.com/GEM-benchmark/GEM-metrics.git
 cd GEM-metrics

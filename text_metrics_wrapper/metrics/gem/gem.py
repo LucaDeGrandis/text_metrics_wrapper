@@ -6,6 +6,10 @@ import shutil
 import os
 
 
+code = "!source /etc/environment"
+exec(code)
+
+
 def Gem(
     hypothesis: List[str],
     references: Union[List[str], List[List[str]]],
