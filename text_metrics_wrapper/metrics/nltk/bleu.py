@@ -22,6 +22,6 @@ def Bleu_nltk(
         A dictionary containing the BLEU score.
     """
     weights = prepare_weights(kwargs["bleu_n"])
-    result = corpus_bleu(references_post, hypothesis)
+    result = corpus_bleu(references, hypothesis)
 
-    return {"bleu": result.score}
+    return {"bleu": result}

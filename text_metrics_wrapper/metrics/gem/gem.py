@@ -27,6 +27,7 @@ def Gem(
     Path(temp_dir).mkdir(parents=True, exist_ok=True)
     hyp_path = os.path.join(temp_dir, "hypothesis.txt")
     ref_path = os.path.join(temp_dir, "references.txt")
+    assert len(hypothesis) == len(references_gem)
     write_json_file(hyp_path, hypothesis, overwrite=True)
     write_json_file(ref_path, references_gem, overwrite=True)
 
