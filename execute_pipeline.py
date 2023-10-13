@@ -39,7 +39,7 @@ def parse_arguments():
     parser.add_argument("--checkpoint", type=str, default=None, help="The path to the model checkpoint")
     parser.add_argument("--method", type=str, default=None, help="The modality of the metric")
     parser.add_argument("--metrics_list", type=str, default=None, help="List of metrics to compute with GEM.")
-    parser.add_argument("--bleu_n", type=str, default=None, help="The n-gram order for BLEU.")
+    parser.add_argument("--bleu_n", type=int, default=None, help="The n-gram order for BLEU.")
     parser.add_argument(
         "--return_all_scores",
         type=bool,
