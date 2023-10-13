@@ -21,7 +21,7 @@ def Gem(
     load_environment_variables("source /etc/environment")
 
     # Create a temporary directory and save temporary files
-    base_dir = os.path.abspath(os.environ.get("TEXT_METRICS_WRAPPER_DIR"))
+    base_dir = os.environ["TEXT_METRICS_WRAPPER_DIR"]
     temp_dir = os.path.join(base_dir, ".temp")
     hyp_path = os.path.join(temp_dir, "hypothesis.txt")
     ref_path = os.path.join(temp_dir, "references.txt")
