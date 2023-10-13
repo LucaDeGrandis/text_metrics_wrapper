@@ -1,13 +1,10 @@
-import sacrebleu
+from sacrebleu.metrics import BLEU
 
 
-def compute_bleu(reference, hypothesis):
-    bleu = sacrebleu.corpus_bleu(hypothesis, [reference])
-    return bleu.score
-
-
-# Example usage
-reference = ["The cat is on the mat."]
-hypothesis = ["The cat is on the mat.", "It's sleeping."]
-bleu_score = compute_bleu(reference, hypothesis)
-print("BLEU score:", bleu_score)
+def Bleu_sacrebleu(
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
+):
+    desc_list = [[]]
+    hypo_list = []

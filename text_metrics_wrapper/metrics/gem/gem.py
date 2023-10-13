@@ -18,7 +18,7 @@ def Gem(
     else:
         references_gem = references
 
-    load_environment_variables("source /etc/environment")
+    load_environment_variables("/etc/environment")
 
     # Create a temporary directory and save temporary files
     base_dir = os.environ["TEXT_METRICS_WRAPPER_DIR"]
