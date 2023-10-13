@@ -44,7 +44,6 @@ class tokenizer:
                         temp_list.append(self.tokenizer(block.text))
                     elif isinstance(block, str):
                         temp_list.append(self.tokenizer(block))
-                    tokenized_sentences.append(temp_list)
                 tokenized_sentences.append(temp_list)
         else:
             for block in text_blocks:
