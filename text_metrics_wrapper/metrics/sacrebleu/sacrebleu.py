@@ -1,11 +1,11 @@
 from typing import List, Union
-from sacrebleu.metrics import BLEU
+from sacrebleu.metrics import BLEU, CHRF, TER
 from text_metrics_wrapper.metrics.bleu_sacrebleu.sacrebleu_utils import organize_references_in_lists
 
 sacrebleu_mapper = {
     "Bleu_sacrebleu": BLEU,
-    "Bleu_sacrebleu": BLEU,
-    "Bleu_sacrebleu": BLEU,
+    "Chrf_sacrebleu": CHRF,
+    "Ter_sacrebleu": TER,
 }
 
 bleu = BLEU(tokenize="none")
