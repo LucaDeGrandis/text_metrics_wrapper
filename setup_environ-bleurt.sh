@@ -19,3 +19,4 @@ git checkout cebe7e6
 pip install .
 wget https://storage.googleapis.com/bleurt-oss-21/BLEURT-20.zip .
 unzip BLEURT-20.zip
+cd ..

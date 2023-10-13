@@ -15,4 +15,6 @@ cd $TEXT_METRICS_WRAPPER_DIR
 # Install nltk package from github
 git clone https://github.com/nltk/nltk.git
 cd nltk
-
+git checkout e2d368e
+pip install .
+cd ..
