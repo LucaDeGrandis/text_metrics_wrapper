@@ -1,10 +1,11 @@
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
-from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
 import shutil
 import os
 import subprocess
+from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
+from text_metrics_wrapper.utils.environment import load_environment_variables
 
 
 def Gem(
@@ -17,8 +18,7 @@ def Gem(
     else:
         references_gem = references
 
-    code = "source /etc/environment"
-    subprocess.run(code, shell=True)
+    load_environment_variables("source /etc/environment")
 
     # Create a temporary directory and save temporary files
     base_dir = os.path.abspath(os.environ.get("TEXT_METRICS_WRAPPER_DIR"))
