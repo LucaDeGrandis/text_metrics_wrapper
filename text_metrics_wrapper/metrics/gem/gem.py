@@ -22,6 +22,7 @@ def Gem(
 
     # Create a temporary directory and save temporary files
     base_dir = os.environ["TEXT_METRICS_WRAPPER_DIR"]
+    print(base_dir)
     temp_dir = os.path.join(base_dir, ".temp")
     hyp_path = os.path.join(temp_dir, "hypothesis.txt")
     ref_path = os.path.join(temp_dir, "references.txt")
