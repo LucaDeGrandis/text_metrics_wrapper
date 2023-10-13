@@ -7,7 +7,7 @@ def organize_references_in_lists(references: Union[List[str], List[List[str]]]) 
     else:
         max_ref_len = max(len(ref_list) for ref_list in references)
         desc_list = []
-        for i in range(max_ref_list):
+        for i in range(max_ref_len):
             desc_list.append([])
             for ref_list in references:
                 if len(ref_list) > i:
