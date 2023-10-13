@@ -4,6 +4,7 @@ from bleurt import score
 import shutil
 import os
 import subprocess
+from pathlib import Path
 from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
 from text_metrics_wrapper.utils.environment import load_environment_variables
 
@@ -22,8 +23,8 @@ def Gem(
 
     # Create a temporary directory and save temporary files
     base_dir = os.environ["TEXT_METRICS_WRAPPER_DIR"]
-    print(base_dir)
     temp_dir = os.path.join(base_dir, ".temp")
+    Path(temp_dir).mkdir(parents=True, exist_ok=True)
     hyp_path = os.path.join(temp_dir, "hypothesis.txt")
     ref_path = os.path.join(temp_dir, "references.txt")
     write_json_file(hyp_path, hypothesis, overwrite=True)
