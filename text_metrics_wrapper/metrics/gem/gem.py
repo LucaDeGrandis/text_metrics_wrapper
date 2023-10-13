@@ -35,7 +35,7 @@ def Gem(
     out_path = os.path.join(temp_dir, "scores.json")
     GEM_dir = os.path.join(base_dir, "GEM-metrics")
     code = ""
-    code += f'cd "{GEM_dir}"' + "\n"
+    code += f'cd "{GEM_dir}"' + " "
     code += "&& ./run_metrics.py" + " "
     code += f"{hyp_path}" + " "
     code += f"-r {ref_path}" + " "
