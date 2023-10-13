@@ -5,12 +5,18 @@ from text_metrics_wrapper.utils.manage_json_files import write_json_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
 from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
 from text_metrics_wrapper.metrics.gem.gem import Gem
+from text_metrics_wrapper.metrics.sacrebleu.bleu import Bleu_sacrebleu
+from text_metrics_wrapper.metrics.sacrebleu.chrf import Chrf_sacrebleu
+from text_metrics_wrapper.metrics.sacrebleu.ter import Ter_sacrebleu
 
 
 metric_to_function_map = {
     "Parent": Parent,
     "Bleurt": Bleurt,
     "Gem": Gem,
+    "Bleu_sacrebleu": Bleu_sacrebleu,
+    "Chrf_sacrebleu": Chrf_sacrebleu,
+    "Ter_sacrebleu": Ter_sacrebleu,
 }
 
 
