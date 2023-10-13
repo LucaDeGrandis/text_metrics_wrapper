@@ -6,9 +6,6 @@ import shutil
 import os
 import subprocess
 
-code = "source /etc/environment"
-subprocess.run(code, shell=True)
-
 
 def Gem(
     hypothesis: List[str],
@@ -19,6 +16,9 @@ def Gem(
         references_gem = [[ref] for ref in references]
     else:
         references_gem = references
+
+    code = "source /etc/environment"
+    subprocess.run(code, shell=True)
 
     # Create a temporary directory and save temporary files
     base_dir = os.path.abspath(os.environ.get("TEXT_METRICS_WRAPPER_DIR"))
