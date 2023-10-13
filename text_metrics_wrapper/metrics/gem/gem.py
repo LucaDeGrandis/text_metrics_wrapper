@@ -6,7 +6,7 @@ import shutil
 import os
 
 
-code = "!source /etc/environment"
+code = "source /etc/environment"
 exec(code)
 
 
