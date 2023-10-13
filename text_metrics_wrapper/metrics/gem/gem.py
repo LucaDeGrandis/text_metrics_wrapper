@@ -39,7 +39,7 @@ def Gem(
     code += f"-r {ref_path}" + " "
     code += f"-o {out_path}" + " "
     code += f"--metric-list {kwargs['metrics_list']}"
-    exec(code)
+    subprocess.run(code, shell=True, check=True)
 
     # Reload the scores
     scores = load_json_file(out_path)
