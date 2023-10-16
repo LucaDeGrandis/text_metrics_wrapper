@@ -29,7 +29,7 @@ def Meteor_nltk(
     references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references]
 
     meteor_scores = []
-    for _hyp, _ref in zip(hypothesis, references):
+    for _hyp, _ref in zip(hypothesis_tok, references_tok):
         meteor_scores.append(meteor_score([_ref], _hyp))
     result = meteor_score(references, hypothesis)
 

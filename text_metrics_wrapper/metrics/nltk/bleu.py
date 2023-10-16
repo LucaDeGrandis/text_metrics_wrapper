@@ -26,6 +26,6 @@ def Bleu_nltk(
     weights = prepare_weights(kwargs["bleu_n"])
     hypothesis_tok = [nltk_tokenizer(x) for x in hypothesis]
     references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references]
-    result = corpus_bleu(references, hypothesis)
+    result = corpus_bleu(references_tok, hypothesis_tok)
 
     return {"bleu": result}
