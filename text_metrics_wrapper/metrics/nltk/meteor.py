@@ -30,7 +30,7 @@ def Meteor_nltk(
 
     meteor_scores = []
     for _hyp, _ref in zip(hypothesis_tok, references_tok):
-        meteor_scores.append(meteor_score([_ref], _hyp))
+        meteor_scores.append(meteor_score(_ref, _hyp))
     result = meteor_score(references, hypothesis)
 
     if kwargs["return_all_scores"]:
