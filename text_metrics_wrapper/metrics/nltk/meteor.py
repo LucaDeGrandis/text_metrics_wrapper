@@ -1,6 +1,9 @@
 from typing import List
 from nltk.translate.meteor_score import meteor_score
 from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
+import nltk
+
+nltk.download("wordnet")
 
 
 def Meteor_nltk(
@@ -31,7 +34,6 @@ def Meteor_nltk(
     meteor_scores = []
     for _hyp, _ref in zip(hypothesis_tok, references_tok):
         meteor_scores.append(meteor_score(_ref, _hyp))
-    result = meteor_score(references, hypothesis)
 
     if kwargs["return_all_scores"]:
         return {"scores": meteor_scores, "meteor": sum(meteor_scores) / len(meteor_scores)}
