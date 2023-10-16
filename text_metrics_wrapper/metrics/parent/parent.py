@@ -5,6 +5,7 @@ from text_metrics_wrapper.metrics.parent.parent_utilities import (
     parent,
     overlap_probability,
 )
+from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
 from typing import List, Union, Tuple, Dict, Any
 from tqdm import tqdm
 import numpy as np
@@ -33,11 +34,14 @@ def Parent(
     """
     print("Computing Parent metric...")
 
+    # Load the tables
+    tables = load_jsonl_file(kwargs["tables"])
+
     # Compute the parent metric
     Fs = []
     Ps = []
     Rs = []
-    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, kwargs["tables"])):
+    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, tables)):
         parent_references = _text_reader_reference(_des)
         parent_candidates = _text_reader_candidate(_hyp)
         parent_tables = [_table_reader([_tab])]
