@@ -1,6 +1,7 @@
 from typing import List
 from nltk.translate.bleu_score import corpus_bleu
 from text_metrics_wrapper.metrics.nltk.nltk_utils import prepare_weights
+from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
 
 
 def Bleu_nltk(
@@ -23,6 +24,8 @@ def Bleu_nltk(
     """
     assert len(hypothesis) == len(references), f"{len(hypothesis)} != {len(references)}"
     weights = prepare_weights(kwargs["bleu_n"])
+    hypothesis_tok = [nltk_tokenizer(x) for x in hypothesis]
+    references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references]
     result = corpus_bleu(references, hypothesis)
 
     return {"bleu": result}

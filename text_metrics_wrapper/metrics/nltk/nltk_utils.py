@@ -26,3 +26,18 @@ def prepare_weights(
         denom = n_weight + 1
         weights.append(tuple([1 / denom for _ in range(denom)]))
     return weights
+
+
+def nltk_tokenizer(
+    sentence: str,
+) -> List[str]:
+    """
+    Tokenizes a sentence for usage with the nltk library.
+
+    Args:
+        sentence (str): The sentence to tokenize.
+
+    Returns:
+        list: A list of tokens.
+    """
+    return sentence.split()
