@@ -34,16 +34,13 @@ def Parent(
     """
     print("Computing Parent metric...")
 
-    # Load the tables
-    tables = load_jsonl_file(kwargs["tables"])
-
     # Compute the parent metric
     Fs = []
     Ps = []
     Rs = []
-    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, tables)):
+    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, kwargs["tables"])):
         parent_references = _text_reader_reference(_des)
-        parent_candidates = _text_reader_candidate(_hyp)
+        parent_candidates = _text_reader_candidate([_hyp])
         parent_tables = [_table_reader([_tab])]
         parent_references = list(parent_references)
         parent_candidates = list(parent_candidates)
