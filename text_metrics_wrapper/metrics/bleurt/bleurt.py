@@ -1,6 +1,9 @@
+import logging
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
+
+logger = logging.getLogger(__name__)
 
 
 def Bleurt(
@@ -31,7 +34,7 @@ def Bleurt(
     assert kwargs["method"] in ["max", "avg"], "method must be either 'max' or 'avg'"
 
     scores = []
-    for hyp, refs in tqdm(zip(hypothesis, references)):
+    for _index, (hyp, refs) in enumerate(zip(hypothesis, references)):
         hyp_scores = []
         for ref in refs:
             hyp_scores.append(scorer.score(references=[ref], candidates=[hyp])[0])
@@ -39,6 +42,10 @@ def Bleurt(
             scores.append(max(hyp_scores))
         else:
             scores.append(sum(hyp_scores) / len(hyp_scores))
+        if _index % 100 == 0:
+            log_sentence = f"BLEURT progress: {_index} / {len(hypothesis)}"
+            logger.info(log_sentence)
+    logger.info(f"BLEURT progress: {len(hypothesis)} / {len(hypothesis)}")
 
     if kwargs["return_all_scores"]:
         return {"scores": scores, "bleurt": sum(scores) / len(scores)}
