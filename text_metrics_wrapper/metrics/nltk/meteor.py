@@ -33,7 +33,11 @@ def Meteor_nltk(
 
     meteor_scores = []
     for _hyp, _ref in zip(hypothesis_tok, references_tok):
-        meteor_scores.append(max([single_meteor_score(x, _hyp) for x in _ref]))
+        if kwargs["method"] == "max":
+            meteor_scores.append(max([single_meteor_score(x, _hyp) for x in _ref]))
+        elif kwargs["method"] == "avg":
+            temp_scores = [single_meteor_score(x, _hyp) for x in _ref]
+            meteor_scores.append(sum(temp_scores) / len(temp_scores))
 
     if kwargs["return_all_scores"]:
         return {"scores": meteor_scores, "meteor": sum(meteor_scores) / len(meteor_scores)}
