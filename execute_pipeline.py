@@ -78,8 +78,16 @@ def main():
     references = load_jsonl_file(args.references)
     hypothesis = load_jsonl_file(args.hypothesis)
 
+    logger.info("Before preprocessing:")
+    logger.info(f"references: {len(references)}")
+    logger.info(f"hypothesis: {len(hypothesis)}")
+
     prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
+
+    logger.info("After preprocessing:")
+    logger.info(f"references: {len(prep_references)}")
+    logger.info(f"hypothesis: {len(prep_hypothesis)}")
 
     kwargs = {}
     if args.tables is not None:
