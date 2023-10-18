@@ -38,7 +38,7 @@ def Bleurt(
 
     assert kwargs["method"] in ["max", "avg"], "method must be either 'max' or 'avg'"
 
-    if isinstance(references[0], list):
+    if isinstance(references[0], str):
         references_post = [[x] for x in references]
 
     scores = []
