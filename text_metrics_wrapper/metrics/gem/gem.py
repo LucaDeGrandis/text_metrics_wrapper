@@ -114,7 +114,7 @@ def Gem(
     # Compute metrics
     results = {}
     for metric in metrics:
-        results[metric] = Gem_single_metric(hypothesis, references_gem, metric, kwargs)
+        results[metric] = Gem_single_metric(hypothesis, references_gem, metric, **kwargs)
 
     logger.info(f'Computing Gem ({kwargs["metrics_list"]}) metrics... FINISHED!')
 
