@@ -20,6 +20,7 @@ import tensorflow.compat.v1 as tf
 
 from bs4 import BeautifulSoup
 from copy import deepcopy
+from typing import List, Union, Dict, Any, Tuple
 
 
 def extend_empty_cells(table_list):
@@ -124,13 +125,22 @@ def _text_reader_candidate(raw_text):
         yield line.strip().lower().split()
 
 
-def _table_reader(raw_table):
+def _table_reader(
+    raw_table: Tuple[str, List[str], List[str]],
+) -> List[List[List[str]]]:
     """Yields tables from the table file.
 
     Tables are parsed into a list of tuples with tokenized entries.
 
     Args:
-        table_file: String filename.
+        raw_table: The Tuple containing the following elements:
+            - raw_table[0]: str: the html table
+            - raw_table[1]: List[str]: the list of entities
+            - raw_table[2]: List[str]: the list of sentences
+
+    The html table is parsed into a list of tuples with tokenized entries.
+    Then the entities are used to filter the table.
+    Finally the sentences are tokenized and added to the table.
     """
     line = raw_table[0]
     table_entries = html_table_to_entries(line)
@@ -147,19 +157,16 @@ def _table_reader(raw_table):
                     [x for x in entry["text"].lower().split()],
                 ]
             )
-    # table_filtered = []
-    # for _entry in table:
-    #     if raw_table[1] is None:
-    #         continue
-    #     for _entity in raw_table[1]:
-    #         if _entity.lower() in ' '.join(_entry[0]) or _entity.lower() in ' '.join(_entry[1]):
-    #             table_filtered.append(_entry)
-    #             break
-    # for _sent in raw_table[2]:
-    #     table_filtered.append([
-    #         _sent.lower().split(),
-    #         [], []
-    #     ])
+    table_filtered = []
+    for _entry in table:
+        if raw_table[1] is None:
+            continue
+        for _entity in raw_table[1]:
+            if _entity.lower() in " ".join(_entry[0]) or _entity.lower() in " ".join(_entry[1]):
+                table_filtered.append(_entry)
+                break
+    for _sent in raw_table[2]:
+        table_filtered.append([_sent.lower().split(), [], []])
     return table
 
 
