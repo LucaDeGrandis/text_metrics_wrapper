@@ -11,6 +11,8 @@ from text_metrics_wrapper.metrics.sacrebleu.ter import Ter_sacrebleu
 from text_metrics_wrapper.metrics.nltk.bleu import Bleu_nltk
 from text_metrics_wrapper.metrics.nltk.meteor import Meteor_nltk
 from text_metrics_wrapper.utils.environment import load_environment_variables
+import logging
+import os
 
 
 metric_to_function_map = {
@@ -44,10 +46,10 @@ def parse_arguments():
     parser.add_argument("--metrics_list", type=str, default=None, help="List of metrics to compute with GEM.")
     parser.add_argument("--bleu_n", type=int, default=None, help="The n-gram order for BLEU.")
     parser.add_argument(
-        "--custom_log_name",
+        "--custom_log_path",
         type=str,
         default=None,
-        help='A custom log name. If not set, then "text_metrics_wrapper-{args.metric}.log" is used',
+        help='A custom log path. If not set, then "text_metrics_wrapper-{args.metric}.log" is used',
     )
     parser.add_argument(
         "--return_all_scores",
@@ -65,10 +67,10 @@ def main():
 
     load_environment_variables("/etc/environment")
     base_dir = os.environ["TEXT_METRICS_WRAPPER_DIR"]
-    if args.custom_log_name is None:
+    if args.custom_log_path is None:
         log_file_path = os.path.join(base_dir, f"text_metrics_wrapper-{args.metric}.log")
     else:
-        log_file_path = os.path.join(base_dir, f"{args.custom_log_name}.log")
+        log_file_path = args.custom_log_path
 
     logging.basicConfig(filename=log_file_path)
     logger = logging.getLogger(__name__)

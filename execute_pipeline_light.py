@@ -10,6 +10,7 @@ from text_metrics_wrapper.metrics.sacrebleu.ter import Ter_sacrebleu
 from text_metrics_wrapper.metrics.nltk.bleu import Bleu_nltk
 from text_metrics_wrapper.metrics.nltk.meteor import Meteor_nltk
 from text_metrics_wrapper.utils.environment import load_environment_variables
+import logging
 import os
 
 
