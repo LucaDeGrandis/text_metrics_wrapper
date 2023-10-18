@@ -158,16 +158,19 @@ def _table_reader(
                 ]
             )
     table_filtered = []
-    for _entry in table:
-        if raw_table[1] is None:
-            continue
-        for _entity in raw_table[1]:
-            if _entity.lower() in " ".join(_entry[0]) or _entity.lower() in " ".join(_entry[1]):
-                table_filtered.append(_entry)
-                break
-    for _sent in raw_table[2]:
-        table_filtered.append([_sent.lower().split(), [], []])
-    return table
+    if len(raw_table) > 1:
+        for _entry in table:
+            if raw_table[1] is None:
+                continue
+            for _entity in raw_table[1]:
+                if _entity.lower() in " ".join(_entry[0]) or _entity.lower() in " ".join(_entry[1]):
+                    table_filtered.append(_entry)
+                    break
+        for _sent in raw_table[2]:
+            table_filtered.append([_sent.lower().split(), [], []])
+    else:
+        table_filtered = table
+    return table_filtered
 
 
 def _table_reader_triplets(raw_table, header=True):

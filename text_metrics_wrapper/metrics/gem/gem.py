@@ -62,7 +62,7 @@ def Gem_single_metric(
     code += f"{hyp_path}" + " "
     code += f"-r {ref_path}" + " "
     code += f"-o {out_path}" + " "
-    code += f"--metric-list {kwargs['metrics_list']}"
+    code += f"--metric-list {metric}"
     subprocess.run(code, shell=True, check=True)
 
     # Reload the scores
