@@ -85,6 +85,9 @@ def main():
     prep_references = preprocess_text_blocks(references, args.tokenizer)
     prep_hypothesis = preprocess_text_blocks(hypothesis, args.tokenizer)
 
+    if isinstance(prep_references[0], str):
+        prep_references = [[x] for x in prep_references]
+
     logger.info("After preprocessing:")
     logger.info(f"references: {len(prep_references)}")
     logger.info(f"hypothesis: {len(prep_hypothesis)}")

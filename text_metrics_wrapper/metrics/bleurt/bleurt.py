@@ -38,11 +38,8 @@ def Bleurt(
 
     assert kwargs["method"] in ["max", "avg"], "method must be either 'max' or 'avg'"
 
-    if isinstance(references[0], str):
-        references_post = [[x] for x in references]
-
     scores = []
-    for _index, (hyp, refs) in enumerate(zip(hypothesis, references_post)):
+    for _index, (hyp, refs) in enumerate(zip(hypothesis, references)):
         hyp_scores = []
         for ref in refs:
             hyp_scores.append(scorer.score(references=[ref], candidates=[hyp])[0])

@@ -11,7 +11,7 @@ logger = logging.getLogger()
 
 def Bleu_nltk(
     hypothesis: List[str],
-    references: List[List[str]],
+    references: Union[List[List[str]], List[str]],
     **kwargs,
 ):
     """Calculates the BLEU score using the NLTK library.
@@ -30,10 +30,15 @@ def Bleu_nltk(
     logger = set_logger(kwargs["log_file_path"])
     logger.info("Computing BLEU score...")
 
-    assert len(hypothesis) == len(references), f"{len(hypothesis)} != {len(references)}"
+    if isinstance(references[0], str):
+        references_post = [[x] for x in references]
+    else:
+        references_post = references
+
+    assert len(hypothesis) == len(references_post), f"{len(hypothesis)} != {len(references_post)}"
     weights = prepare_weights(kwargs["bleu_n"])
     hypothesis_tok = [nltk_tokenizer(x) for x in hypothesis]
-    references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references]
+    references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references_post]
     result = corpus_bleu(references_tok, hypothesis_tok)
 
     logger.info("Computing BLEU score... FINISHED!")
