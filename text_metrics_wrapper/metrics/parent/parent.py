@@ -45,7 +45,7 @@ def Parent(
     for _index, (_des, _hyp, _tab) in enumerate(zip(references, hypothesis, kwargs["tables"])):
         parent_references = _text_reader_reference(_des)
         parent_candidates = _text_reader_candidate([_hyp])
-        parent_tables = [_table_reader([_tab])]
+        parent_tables = [_table_reader(_tab)]
         parent_references = list(parent_references)
         parent_candidates = list(parent_candidates)
         parent_tables = list(parent_tables)
