@@ -11,7 +11,11 @@ logger = logging.getLogger()
 bleu = BLEU(tokenize="none")
 
 
-def Bleu_sacrebleu(hypothesis: List[str], references: Union[List[str], List[List[str]]], **kwargs) -> dict:
+def Bleu_sacrebleu(
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
+) -> dict:
     """
     Calculates the BLEU score using the SacreBLEU library.
 

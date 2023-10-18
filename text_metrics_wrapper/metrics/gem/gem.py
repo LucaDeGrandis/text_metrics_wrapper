@@ -17,6 +17,7 @@ def Gem_single_metric(
     hypothesis: List[str],
     references: Union[List[str], List[List[str]]],
     metric: str,
+    **kwargs,
 ) -> Union[Tuple[float, float, float], Tuple[Dict[str, float]]]:
     """Computes the GEM (Generic Evaluation Metric) score for a given hypothesis and references.
 

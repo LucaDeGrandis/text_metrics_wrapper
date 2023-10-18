@@ -11,7 +11,11 @@ logger = logging.getLogger()
 ter = TER()
 
 
-def Ter_sacrebleu(hypothesis: List[str], references: Union[List[str], List[List[str]]], **kwargs) -> dict:
+def Ter_sacrebleu(
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
+) -> dict:
     """
     Calculates the TER score using the SacreBLEU library.
 

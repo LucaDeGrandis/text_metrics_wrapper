@@ -11,7 +11,11 @@ logger = logging.getLogger()
 chrf = CHRF()
 
 
-def Chrf_sacrebleu(hypothesis: List[str], references: Union[List[str], List[List[str]]], **kwargs) -> dict:
+def Chrf_sacrebleu(
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
+) -> dict:
     """
     Calculates the CHRF score using the SacreBLEU library.
 
