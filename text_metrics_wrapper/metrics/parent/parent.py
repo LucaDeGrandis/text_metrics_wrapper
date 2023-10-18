@@ -11,6 +11,7 @@ from tqdm import tqdm
 import numpy as np
 from typing import List, Tuple, Union
 import logging
+from text_metrics_wrapper.utils.environment import set_logger
 
 
 logger = logging.getLogger()
@@ -34,6 +35,7 @@ def Parent(
     Returns:
         A tuple of floats representing the precision, recall, and F1 score of the Parent metric.
     """
+    logger = set_logger(kwargs["log_file_path"])
     logger.info("Computing Parent score...")
 
     # Compute the parent metric

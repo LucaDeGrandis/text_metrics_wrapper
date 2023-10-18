@@ -15,7 +15,8 @@ def load_environment_variables(
 
 def set_logger(log_file_path):
     logger = logging.getLogger()
-    file_handler = logging.FileHandler(log_file_path)
+    f_handler = logging.FileHandler(filename=log_file_path)
     file_handler.setLevel(logging.INFO)
-    logger.addHandler(file_handler)
+    logger.addHandler(f_handler)
+    logger.setLevel(logging.INFO)
     return logger

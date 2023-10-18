@@ -6,7 +6,7 @@ import os
 import subprocess
 from pathlib import Path
 from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
-from text_metrics_wrapper.utils.environment import load_environment_variables
+from text_metrics_wrapper.utils.environment import load_environment_variables, set_logger
 import logging
 
 
@@ -32,6 +32,7 @@ def Gem_single_metric(
         AssertionError: If the length of the hypothesis and references lists do not match.
         subprocess.CalledProcessError: If the command to compute the metrics fails.
     """
+    logger = set_logger(kwargs["log_file_path"])
     logger.info(f"Computing Gem-{metric} score...")
 
     if isinstance(references[0], str):
