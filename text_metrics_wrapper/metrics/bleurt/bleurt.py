@@ -47,7 +47,7 @@ def Bleurt(
             scores.append(max(hyp_scores))
         else:
             scores.append(sum(hyp_scores) / len(hyp_scores))
-        if _index % 100 == 0:
+        if _index % 10 == 0:
             log_sentence = f"BLEURT progress: {_index} / {len(hypothesis)}"
             logger.info(log_sentence)
     logger.info(f"BLEURT progress: {len(hypothesis)} / {len(hypothesis)}")
