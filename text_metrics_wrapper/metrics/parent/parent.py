@@ -9,9 +9,10 @@ from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
 from typing import List, Union, Tuple, Dict, Any
 from tqdm import tqdm
 import numpy as np
-
-
 from typing import List, Tuple, Union
+
+
+logger = logging.getLogger()
 
 
 def Parent(
@@ -32,13 +33,13 @@ def Parent(
     Returns:
         A tuple of floats representing the precision, recall, and F1 score of the Parent metric.
     """
-    print("Computing Parent metric...")
+    logger.info("Computing Parent score...")
 
     # Compute the parent metric
     Fs = []
     Ps = []
     Rs = []
-    for _des, _hyp, _tab in tqdm(zip(references, hypothesis, kwargs["tables"])):
+    for _index, (_des, _hyp, _tab) in enumerate(zip(references, hypothesis, kwargs["tables"])):
         parent_references = _text_reader_reference(_des)
         parent_candidates = _text_reader_candidate([_hyp])
         parent_tables = [_table_reader([_tab])]
@@ -63,5 +64,12 @@ def Parent(
         Fs.append(temp_scores[score_index][2])
         Ps.append(temp_scores[score_index][0])
         Rs.append(temp_scores[score_index][1])
+
+        if _index % 100 == 0:
+            log_sentence = f"Parent progress: {_index} / {len(hypothesis)}"
+            logger.info(log_sentence)
+
+    logger.info(f"Parent progress: {len(hypothesis)} / {len(hypothesis)}")
+    logger.info("Computing Parent score... FINISHED!")
 
     return {"precision": np.mean(Ps), "recall": np.mean(Rs), "F1score": np.mean(Fs)}

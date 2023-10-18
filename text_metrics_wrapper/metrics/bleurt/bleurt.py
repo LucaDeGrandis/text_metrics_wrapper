@@ -2,8 +2,10 @@ import logging
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
+from text_metrics_wrapper.utils.environment import load_environment_variables
 
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger()
 
 
 def Bleurt(
@@ -29,6 +31,7 @@ def Bleurt(
         AssertionError: If the method is not 'max' or 'avg'.
 
     """
+    logger.info("Computing BLEURT score...")
     scorer = score.BleurtScorer(kwargs["checkpoint"])
 
     assert kwargs["method"] in ["max", "avg"], "method must be either 'max' or 'avg'"
@@ -46,6 +49,7 @@ def Bleurt(
             log_sentence = f"BLEURT progress: {_index} / {len(hypothesis)}"
             logger.info(log_sentence)
     logger.info(f"BLEURT progress: {len(hypothesis)} / {len(hypothesis)}")
+    logger.info("Computing BLEURT score... FINISHED!")
 
     if kwargs["return_all_scores"]:
         return {"scores": scores, "bleurt": sum(scores) / len(scores)}

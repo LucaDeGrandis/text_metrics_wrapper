@@ -3,7 +3,6 @@ from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess
 from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
 from text_metrics_wrapper.utils.manage_json_files import write_json_file
 from text_metrics_wrapper.metrics.parent.parent import Parent
-from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
 from text_metrics_wrapper.metrics.gem.gem import Gem
 from text_metrics_wrapper.metrics.sacrebleu.bleu import Bleu_sacrebleu
 from text_metrics_wrapper.metrics.sacrebleu.chrf import Chrf_sacrebleu
@@ -15,7 +14,6 @@ from text_metrics_wrapper.utils.environment import load_environment_variables
 
 metric_to_function_map = {
     "Parent": Parent,
-    "Bleurt": Bleurt,
     "Gem": Gem,
     "Bleu_sacrebleu": Bleu_sacrebleu,
     "Chrf_sacrebleu": Chrf_sacrebleu,
