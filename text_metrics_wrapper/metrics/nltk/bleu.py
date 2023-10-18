@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union, Dict, Any, Tuple
 from nltk.translate.bleu_score import corpus_bleu
 from text_metrics_wrapper.metrics.nltk.nltk_utils import prepare_weights
 from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
