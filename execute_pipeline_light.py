@@ -90,6 +90,7 @@ def main():
         kwargs["metrics_list"] = args.metrics_list
     if args.bleu_n is not None:
         kwargs["bleu_n"] = args.bleu_n
+    kwargs["log_file_path"] = log_file_path
     kwargs["return_all_scores"] = args.return_all_scores
 
     metric_function = metric_to_function_map[args.metric]

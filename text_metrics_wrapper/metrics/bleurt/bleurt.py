@@ -1,11 +1,12 @@
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
-from text_metrics_wrapper.utils.environment import load_environment_variables
+from text_metrics_wrapper.utils.environment import load_environment_variables, set_logger
 import logging
+import os
 
 
-logger = logging.getLogger()
+load_environment_variables("/etc/environment")
 
 
 def Bleurt(
@@ -31,6 +32,7 @@ def Bleurt(
         AssertionError: If the method is not 'max' or 'avg'.
 
     """
+    logger = set_logger(kwargs["log_file_path"])
     logger.info("Computing BLEURT score...")
     scorer = score.BleurtScorer(kwargs["checkpoint"])
 
