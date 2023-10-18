@@ -7,13 +7,33 @@ import subprocess
 from pathlib import Path
 from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
 from text_metrics_wrapper.utils.environment import load_environment_variables
+import logging
 
 
-def Gem(
+logger = logging.getLogger()
+
+
+def Gem_single_metric(
     hypothesis: List[str],
     references: Union[List[str], List[List[str]]],
-    **kwargs,
+    metric: str,
 ) -> Union[Tuple[float, float, float], Tuple[Dict[str, float]]]:
+    """Computes the GEM (Generic Evaluation Metric) score for a given hypothesis and references.
+
+    Args:
+        hypothesis: A list of strings representing the hypothesis.
+        references: A list of strings or a list of lists of strings representing the references.
+        metrics_list: str: a string representing a single metric in the Gem benchmark.
+
+    Returns:
+        A dictionary of metrics representing precision, recall, and F1 score.
+
+    Raises:
+        AssertionError: If the length of the hypothesis and references lists do not match.
+        subprocess.CalledProcessError: If the command to compute the metrics fails.
+    """
+    logger.info(f"Computing Gem-{metric} score...")
+
     if isinstance(references[0], str):
         references_gem = [[ref] for ref in references]
     else:
@@ -49,4 +69,51 @@ def Gem(
     # Remove the hidden directory
     shutil.rmtree(temp_dir)
 
+    logger.info(f"Computing Gem-{metric} score... FINISHED!")
+
     return scores
+
+
+def Gem(
+    hypothesis: List[str],
+    references: Union[List[str], List[List[str]]],
+    **kwargs,
+) -> Union[Tuple[float, float, float], Tuple[Dict[str, float]]]:
+    """Computes the GEM (Generic Evaluation Metric) score for a given hypothesis and references.
+
+    Args:
+        hypothesis: A list of strings representing the hypothesis.
+        references: A list of strings or a list of lists of strings representing the references.
+        **kwargs: Additional keyword arguments.
+            metrics_list: A string representing the list of metrics to compute.
+
+    Kwargs:
+        metrics_list: str: a string representing the metrics to compute. Metrics are all lowercase and
+            separated by a single space.
+
+    Returns:
+        A dictionary of metrics representing precision, recall, and F1 score.
+
+    Raises:
+        AssertionError: If the length of the hypothesis and references lists do not match.
+        subprocess.CalledProcessError: If the command to compute the metrics fails.
+    """
+    logger.info(f'Computing Gem ({kwargs["metrics_list"]}) metrics...')
+
+    if isinstance(references[0], str):
+        references_gem = [[ref] for ref in references]
+    else:
+        references_gem = references
+
+    load_environment_variables("/etc/environment")
+
+    metrics = kwargs["metrics_list"].split(" ")
+
+    # Compute metrics
+    results = {}
+    for metric in metrics:
+        results[metric] = Gem_single_metric(hypothesis, references_gem, metric)
+
+    logger.info(f'Computing Gem ({kwargs["metrics_list"]}) metrics... FINISHED!')
+
+    return results

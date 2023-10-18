@@ -2,6 +2,10 @@ from typing import List
 from nltk.translate.bleu_score import corpus_bleu
 from text_metrics_wrapper.metrics.nltk.nltk_utils import prepare_weights
 from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
+import logging
+
+
+logger = logging.getLogger()
 
 
 def Bleu_nltk(
@@ -22,10 +26,14 @@ def Bleu_nltk(
     Returns:
         A dictionary containing the BLEU score.
     """
+    logger.info("Computing BLEU score...")
+
     assert len(hypothesis) == len(references), f"{len(hypothesis)} != {len(references)}"
     weights = prepare_weights(kwargs["bleu_n"])
     hypothesis_tok = [nltk_tokenizer(x) for x in hypothesis]
     references_tok = [[nltk_tokenizer(x) for x in ref_list] for ref_list in references]
     result = corpus_bleu(references_tok, hypothesis_tok)
+
+    logger.info("Computing BLEU score... FINISHED!")
 
     return {"bleu": result}

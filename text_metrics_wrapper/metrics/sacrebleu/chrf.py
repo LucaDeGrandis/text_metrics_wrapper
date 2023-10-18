@@ -1,6 +1,11 @@
 from typing import List, Union
 from sacrebleu.metrics import CHRF
 from text_metrics_wrapper.metrics.sacrebleu.sacrebleu_utils import organize_references_in_lists
+import logging
+
+
+logger = logging.getLogger()
+
 
 chrf = CHRF()
 
@@ -20,7 +25,11 @@ def Chrf_sacrebleu(hypothesis: List[str], references: Union[List[str], List[List
     Raises:
         TypeError: If the input arguments are not of the expected type.
     """
+    logger.info("Computing CHRF score...")
+
     references_post = organize_references_in_lists(references)
     result = chrf.corpus_score(hypothesis, references_post)
+
+    logger.info("Computing CHRF score... FINISHED!")
 
     return {"chrf": result.score}

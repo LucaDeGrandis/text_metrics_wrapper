@@ -1,6 +1,11 @@
 from typing import List, Union
 from sacrebleu.metrics import TER
 from text_metrics_wrapper.metrics.sacrebleu.sacrebleu_utils import organize_references_in_lists
+import logging
+
+
+logger = logging.getLogger()
+
 
 ter = TER()
 
@@ -20,7 +25,11 @@ def Ter_sacrebleu(hypothesis: List[str], references: Union[List[str], List[List[
     Raises:
         TypeError: If the input arguments are not of the expected type.
     """
+    logger.info("Computing TER score...")
+
     references_post = organize_references_in_lists(references)
     result = ter.corpus_score(hypothesis, references_post)
+
+    logger.info("Computing TER score... FINISHED!")
 
     return {"ter": result.score}

@@ -1,8 +1,8 @@
-import logging
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
 from text_metrics_wrapper.utils.environment import load_environment_variables
+import logging
 
 
 logger = logging.getLogger()

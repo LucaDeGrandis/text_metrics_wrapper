@@ -2,6 +2,11 @@ from typing import List
 from nltk.translate.meteor_score import meteor_score, single_meteor_score
 from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
 import nltk
+import logging
+
+
+logger = logging.getLogger()
+
 
 nltk.download("wordnet")
 
@@ -25,6 +30,8 @@ def Meteor_nltk(
     Returns:
         A dictionary containing the Meteor score.
     """
+    logger.info("Computing METEOR score...")
+
     assert len(hypothesis) == len(references), f"{len(hypothesis)} != {len(references)}"
 
     # Tokenize the sentences
@@ -38,6 +45,8 @@ def Meteor_nltk(
         elif kwargs["method"] == "avg":
             temp_scores = [single_meteor_score(x, _hyp) for x in _ref]
             meteor_scores.append(sum(temp_scores) / len(temp_scores))
+
+    logger.info("Computing METEOR score... FINISHED!")
 
     if kwargs["return_all_scores"]:
         return {"scores": meteor_scores, "meteor": sum(meteor_scores) / len(meteor_scores)}
