@@ -1,5 +1,5 @@
 from typing import List, Union
-from text_metrics_wrapper.tokenizers.tokenizer import tokenizer
+from altilia_text_metrics.tokenizers.tokenizer import tokenizer
 
 
 def custom_text_preprocessing(text: str) -> str:

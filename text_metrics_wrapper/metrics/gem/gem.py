@@ -5,8 +5,8 @@ import shutil
 import os
 import subprocess
 from pathlib import Path
-from text_metrics_wrapper.utils.manage_json_files import write_json_file, load_json_file
-from text_metrics_wrapper.utils.environment import load_environment_variables, set_logger
+from altilia_text_metrics.utils.manage_json_files import write_json_file, load_json_file
+from altilia_text_metrics.utils.environment import load_environment_variables, set_logger
 import logging
 
 

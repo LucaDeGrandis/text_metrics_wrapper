@@ -1,8 +1,8 @@
 from typing import List, Union
 from sacrebleu.metrics import BLEU
-from text_metrics_wrapper.metrics.sacrebleu.sacrebleu_utils import organize_references_in_lists
+from altilia_text_metrics.metrics.sacrebleu.sacrebleu_utils import organize_references_in_lists
 import logging
-from text_metrics_wrapper.utils.environment import load_environment_variables, set_logger
+from altilia_text_metrics.utils.environment import load_environment_variables, set_logger
 
 
 logger = logging.getLogger()

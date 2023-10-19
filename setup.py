@@ -1,10 +1,10 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 setup(
-    name="text_metrics_wrapper",
+    name="altilia_text_metrics",
     version="0.1.0",
-    description="text_metrics_wrapper",
+    description="altilia_text_metrics",
     author="Luca De Grandis",
-    author_email="your.email@example.com",
+    author_email="luca.degrandis@altiliagroup.com",
 )

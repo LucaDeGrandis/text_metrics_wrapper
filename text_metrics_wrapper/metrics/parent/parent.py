@@ -1,17 +1,17 @@
-from text_metrics_wrapper.metrics.parent.parent_utilities import (
+from altilia_text_metrics.metrics.parent.parent_utilities import (
     _text_reader_reference,
     _text_reader_candidate,
     _table_reader,
     parent,
     overlap_probability,
 )
-from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
+from altilia_text_metrics.utils.manage_jsonl_files import load_jsonl_file
 from typing import List, Union, Tuple, Dict, Any
 from tqdm import tqdm
 import numpy as np
 from typing import List, Tuple, Union
 import logging
-from text_metrics_wrapper.utils.environment import set_logger
+from altilia_text_metrics.utils.environment import set_logger
 
 
 logger = logging.getLogger()

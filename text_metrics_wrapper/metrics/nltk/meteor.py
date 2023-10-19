@@ -1,7 +1,7 @@
 from typing import List
 from nltk.translate.meteor_score import meteor_score, single_meteor_score
-from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
-from text_metrics_wrapper.utils.environment import set_logger
+from altilia_text_metrics.metrics.nltk.nltk_utils import nltk_tokenizer
+from altilia_text_metrics.utils.environment import set_logger
 import nltk
 import logging
 

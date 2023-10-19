@@ -1,16 +1,16 @@
 import argparse
-from text_metrics_wrapper.preprocessing.preprocess_text_blocks import preprocess_text_blocks
-from text_metrics_wrapper.utils.manage_jsonl_files import load_jsonl_file
-from text_metrics_wrapper.utils.manage_json_files import write_json_file
-from text_metrics_wrapper.metrics.parent.parent import Parent
-from text_metrics_wrapper.metrics.bleurt.bleurt import Bleurt
-from text_metrics_wrapper.metrics.gem.gem import Gem
-from text_metrics_wrapper.metrics.sacrebleu.bleu import Bleu_sacrebleu
-from text_metrics_wrapper.metrics.sacrebleu.chrf import Chrf_sacrebleu
-from text_metrics_wrapper.metrics.sacrebleu.ter import Ter_sacrebleu
-from text_metrics_wrapper.metrics.nltk.bleu import Bleu_nltk
-from text_metrics_wrapper.metrics.nltk.meteor import Meteor_nltk
-from text_metrics_wrapper.utils.environment import load_environment_variables
+from altilia_text_metrics.preprocessing.preprocess_text_blocks import preprocess_text_blocks
+from altilia_text_metrics.utils.manage_jsonl_files import load_jsonl_file
+from altilia_text_metrics.utils.manage_json_files import write_json_file
+from altilia_text_metrics.metrics.parent.parent import Parent
+from altilia_text_metrics.metrics.bleurt.bleurt import Bleurt
+from altilia_text_metrics.metrics.gem.gem import Gem
+from altilia_text_metrics.metrics.sacrebleu.bleu import Bleu_sacrebleu
+from altilia_text_metrics.metrics.sacrebleu.chrf import Chrf_sacrebleu
+from altilia_text_metrics.metrics.sacrebleu.ter import Ter_sacrebleu
+from altilia_text_metrics.metrics.nltk.bleu import Bleu_nltk
+from altilia_text_metrics.metrics.nltk.meteor import Meteor_nltk
+from altilia_text_metrics.utils.environment import load_environment_variables
 import logging
 import os
 

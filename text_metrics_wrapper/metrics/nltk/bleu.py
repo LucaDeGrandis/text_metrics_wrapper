@@ -1,8 +1,8 @@
 from typing import List, Union, Dict, Any, Tuple
 from nltk.translate.bleu_score import corpus_bleu
-from text_metrics_wrapper.metrics.nltk.nltk_utils import prepare_weights
-from text_metrics_wrapper.metrics.nltk.nltk_utils import nltk_tokenizer
-from text_metrics_wrapper.utils.environment import set_logger
+from altilia_text_metrics.metrics.nltk.nltk_utils import prepare_weights
+from altilia_text_metrics.metrics.nltk.nltk_utils import nltk_tokenizer
+from altilia_text_metrics.utils.environment import set_logger
 import logging
 
 

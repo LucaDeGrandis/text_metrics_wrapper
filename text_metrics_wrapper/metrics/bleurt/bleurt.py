@@ -1,7 +1,7 @@
 from typing import List, Union, Tuple, Dict
 from tqdm import tqdm
 from bleurt import score
-from text_metrics_wrapper.utils.environment import load_environment_variables, set_logger
+from altilia_text_metrics.utils.environment import load_environment_variables, set_logger
 import logging
 import os
 

@@ -1,5 +1,5 @@
 # text_metrics_wrapper
-A wrapper aroung many text summarization/translation metrics
+A wrapper around some system translation metrics
 
 # DISCLAIMER
 This is not a custom implementation of metrics, just a wrapper around existing packages.
